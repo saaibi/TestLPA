@@ -1,0 +1,29 @@
+{
+  "name": "testlpa",
+  "version": "1.0.0",
+  "description": "Test LPA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saaibi/TestLPA.git"
+  },
+  "keywords": [
+    "test",
+    "LPA"
+  ],
+  "author": "saaibi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saaibi/TestLPA/issues"
+  },
+  "homepage": "https://github.com/saaibi/TestLPA#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.16",
+    "morgan": "^1.9.1"
+  }
+}
