@@ -13,9 +13,9 @@ app.use(morgan('dev'))
     .use(cors({origin: 'http://localhost:4000'}));
 
 // Routes
-app.use()
-   .use()
+app.use('/api/clients', require('./server/routes/clients.routes'))
+
 // Start Server
 app.listen(app.get('port'),()=>{
-    console.log(`Server running http://localhost:${app.get('port')}`)
+    console.log(`Server running http://localhost:${app.get('PORT')}`)
 })
