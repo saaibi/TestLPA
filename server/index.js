@@ -19,7 +19,7 @@ app.use(morgan('dev'))
 app.use('/api/clients', require('./routes/clients.routes'));
 
 //Static 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Start Server
 app.listen(app.get('port'), () => {
