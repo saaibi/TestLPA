@@ -5,9 +5,9 @@ import Campos from './Partials/Campos';
 import BarraDeAcciones from './Partials/BarraDeAcciones';
 
 const Form = () => (
-	<div className="agenda--form">
+	<div >
 		<EtiquetaActualizacion visible />
-		<div className="agenda--form_contenedor">
+		<div className="row">
 			<Campos />
 			<BarraDeAcciones />
 		</div>

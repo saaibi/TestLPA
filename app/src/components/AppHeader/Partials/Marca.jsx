@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Marca = () => (
-	<span className="app--header_marca">Agenda</span>
+	<span className="brand-logo">Clients</span>
 );
 
 export default Marca;

@@ -12,16 +12,20 @@ class Agenda extends React.Component {
 		super(props);
 	}
 
-	componentDidMount(){
+	componentWillMount() {
 		this.props.dispatch(clienActions.getAllClient());
 	}
 
 	render() {
 		const { client } = this.props;
-		return (
-			<div className="agenda">
-				<Form />
-				<Grid contactos={ client } />
+		return (	
+			<div className="row">
+				<div className="col s3">
+					<Form />
+				</div>
+				<div className="col s9">
+					<Grid contactos={client} />
+				</div>
 			</div>
 		);
 	}

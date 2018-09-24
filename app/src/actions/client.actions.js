@@ -12,12 +12,10 @@ const getAllClient = () => {
     return async dispatch => {
         dispatch(request());
         try {
-            console.log("############")
             const users = await axios(`${apiUrl}/clients`, "GET");
-            console.log(users)
             dispatch(success(users.data));
         } catch (error) {
-            const message = handleError(error, "Unregistered user");
+            const message = error.message || error;
             dispatch(failure({ error: message }));
         }
     };

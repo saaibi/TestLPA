@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const EtiquetaActualizacion = ({ visible }) => visible && (
-	<div className="agenda--form_etiqueta_actualizacion">
+	<div className=" ">
 		<span className="etiqueta">Actualizar</span>
 	</div>
 );

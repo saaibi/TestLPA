@@ -4,9 +4,16 @@ import Nombre from '../../../Common/Input';
 import Celular from '../../../Common/Input';
 
 const Campos = () => (
-	<div className="agenda--form_inputs">
-		<Nombre placeholder="Nombre" />
-		<Celular className="celular" placeholder="Celular" />
+	<div>
+		<div className="input-field col s12">
+			<Nombre />
+			<label htmlFor="firts_name">Firts Name</label>
+		</div>
+		<div className="input-field col s12">
+			<Celular className="" />
+			<label htmlFor="last_name">Last Name</label>
+		</div>
+
 	</div>
 );
 

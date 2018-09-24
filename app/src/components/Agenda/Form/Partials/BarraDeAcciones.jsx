@@ -4,9 +4,9 @@ import Guardar from '../../../Common/Button';
 import Limpiar from '../../../Common/Button';
 
 const BarraDeAcciones = () => (
-	<div className="agenda--form_barra_acciones">
-		<Guardar className="satisfactorio" texto="Guardar" />
-		<Limpiar className="limpiar" texto="Limpiar" />
+	<div className="">
+		<Guardar className="waves-effect waves-light btn" texto="Guardar" />
+		<Limpiar className="waves-effect waves-light btn" texto="Limpiar" />
 	</div>
 );
 
