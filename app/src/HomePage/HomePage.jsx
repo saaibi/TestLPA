@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { userActions } from "../actions";
+import { clienActions } from "../actions/client.actions";
 
 class HomePage extends React.Component {
   componentDidMount() {
     console.log("Props HomePage");
     console.log(this.props);
 
-    this.props.dispatch(userActions.getAll());
+    this.props.dispatch(clienActions.getAllClient());
   }
 
   handleDeleteUser(id) {
