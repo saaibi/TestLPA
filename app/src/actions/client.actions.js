@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 import { apiUrl } from '../utils/http'
-import { OBTENER_CLIENT } from '../constants/client.constans';
+import { CLIENT_GET , CLIENT_CREATE } from '../constants/client.constans';
 
 
 const getAllClient = () => {
     const request = () => ({
-        type: OBTENER_CLIENT.REQUEST,
+        type: CLIENT_GET.REQUEST,
         payload: {
             clients: [],
             isLoading: true,
@@ -15,7 +15,7 @@ const getAllClient = () => {
     });
 
     const success = clients => ({
-        type: OBTENER_CLIENT.SUCCESS,
+        type: CLIENT_GET.SUCCESS,
         payload: {
             clients,
             isLoading: false,
@@ -24,7 +24,47 @@ const getAllClient = () => {
     });
 
     const failure = error => ({
-        type: OBTENER_CLIENT.FAILURE,
+        type: CLIENT_GET.FAILURE,
+        payload: {
+            isLoading: true,
+            error,
+        },
+    });
+
+    return async dispatch => {
+        dispatch(request());
+        try {
+            const users = await axios(`${apiUrl}/clients`, "GET");
+            dispatch(success(users.data));
+        } catch (error) {
+            const message = error.message || error;
+            dispatch(failure({ error: message }));
+        }
+    };
+};
+
+
+const createClient = () => {
+    const request = () => ({
+        type: CLIENT_CREATE.REQUEST,
+        payload: {
+            clients: [],
+            isLoading: true,
+            error: '',
+        },
+    });
+
+    const success = clients => ({
+        type: CLIENT_CREATE.SUCCESS,
+        payload: {
+            clients,
+            isLoading: false,
+            error: '',
+        },
+    });
+
+    const failure = error => ({
+        type: CLIENT_CREATE.FAILURE,
         payload: {
             isLoading: true,
             error,
@@ -44,5 +84,6 @@ const getAllClient = () => {
 };
 
 export const clienActions = {
-    getAllClient
+    getAllClient,
+    createClient
 }

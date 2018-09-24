@@ -4,18 +4,18 @@ import FirtsName from '../../../Common/Input';
 import LastsName from '../../../Common/Input';
 import Id from '../../../Common/Input';
 
-const Fields = () => (
+const Fields = (props) => (
 	<div>
 		<div className="input-field col s12">
-			<FirtsName />
+			<FirtsName onChange={props.loadClient}/>
 			<label htmlFor="firts_name">Firts Name</label>
 		</div>
 		<div className="input-field col s12">
-			<LastsName className="" />
+			<LastsName className="" onChange={props.loadClient} />
 			<label htmlFor="last_name">Last Name</label>
 		</div>
 		<div className="input-field col s12">
-			<Id className="" />
+			<Id className=""  onChange={props.loadClient}/>
 			<label htmlFor="id">Id</label>
 		</div>
 	</div>

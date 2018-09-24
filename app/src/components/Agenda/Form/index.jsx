@@ -4,12 +4,12 @@ import LabelUpdate from './Partials/LabelUpdate';
 import Fields from './Partials/Fields';
 import ActionBar from './Partials/ActionBar';
 
-const Form = () => (
+const Form = (props) => (
 	<div >
 		<LabelUpdate visible />
 		<div className="row">
-			<Fields />
-			<ActionBar />
+			<Fields loadClient={props.loadClient}/>
+			<ActionBar  createClient={props.createClient}/>
 		</div>
 	</div>
 );

@@ -1,4 +1,4 @@
-import { OBTENER_CLIENT, BORRAR_CLIENT } from '../constants/client.constans';
+import { CLIENT_GET, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE } from '../constants/client.constans';
 
 const etateInicial = {
   clients: [],
@@ -10,14 +10,14 @@ const etateInicial = {
 export function client(state = etateInicial, action) {
   const { type, payload } = action;
   switch (type) {
-    case OBTENER_CLIENT.REQUEST:
-    case OBTENER_CLIENT.SUCCESS:
-    case OBTENER_CLIENT.FAILURE:
+    case CLIENT_GET.REQUEST:
+    case CLIENT_GET.SUCCESS:
+    case CLIENT_GET.FAILURE:
       return {
         ...state,
         ...payload,
       };
-    case BORRAR_CLIENT.REQUEST:
+    case CLIENT_DELETE.REQUEST:
       return {
         ...state,
         items: state.items.map(user =>
@@ -26,11 +26,11 @@ export function client(state = etateInicial, action) {
             : user
         )
       };
-    case BORRAR_CLIENT.SUCCESS:
+    case CLIENT_DELETE.SUCCESS:
       return {
         items: state.items.filter(user => user.id !== action.id)
       };
-    case BORRAR_CLIENT.FAILURE:
+    case CLIENT_DELETE.FAILURE:
       return {
         ...state,
         items: state.items.map(user => {
