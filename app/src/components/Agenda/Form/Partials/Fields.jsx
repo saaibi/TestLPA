@@ -4,7 +4,7 @@ import FirtsName from '../../../Common/Input';
 import LastsName from '../../../Common/Input';
 import Id from '../../../Common/Input';
 
-const Campos = () => (
+const Fields = () => (
 	<div>
 		<div className="input-field col s12">
 			<FirtsName />
@@ -21,4 +21,4 @@ const Campos = () => (
 	</div>
 );
 
-export default Campos;
+export default Fields;

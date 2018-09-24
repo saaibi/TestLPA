@@ -1,15 +1,15 @@
 import React from 'react';
 
-import EtiquetaActualizacion from './Partials/EtiquetaActualizacion';
-import Campos from './Partials/Campos';
-import BarraDeAcciones from './Partials/BarraDeAcciones';
+import LabelUpdate from './Partials/LabelUpdate';
+import Fields from './Partials/Fields';
+import ActionBar from './Partials/ActionBar';
 
 const Form = () => (
 	<div >
-		<EtiquetaActualizacion visible />
+		<LabelUpdate visible />
 		<div className="row">
-			<Campos />
-			<BarraDeAcciones />
+			<Fields />
+			<ActionBar />
 		</div>
 	</div>
 );

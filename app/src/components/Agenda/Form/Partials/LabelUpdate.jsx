@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EtiquetaActualizacion = ({ visible }) => visible && (
+const LabelUpdate = ({ visible }) => visible && (
 	<div className=" ">
 		<span className="etiqueta">Actualizar</span>
 	</div>
 );
 
-EtiquetaActualizacion.propTypes = {
+LabelUpdate.propTypes = {
 	visible: PropTypes.bool,
 };
 
-export default EtiquetaActualizacion;
+export default LabelUpdate;
