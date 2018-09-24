@@ -3,15 +3,24 @@ import { userService } from '../services';
 import { alertActions } from './';
 import { history } from '../helpers';
 
-export const userActions = {
-    login,
-    logout,
-    register,
-    getAll,
-    delete: _delete
+const getAllClient = () => {
+    const request = () => ({ type: USERS_GETALL.REQUEST });
+    const success = users => ({ type: USERS_GETALL.SUCCESS, users });
+    const failure = error => ({ type: USERS_GETALL.FAILURE, error });
+
+    return async dispatch => {
+        dispatch(request());
+        try {
+            const users = await makeRequestAsync(`/user`, "GET");
+            dispatch(success(users));
+        } catch (error) {
+            const message = handleError(error, "Unregistered user");
+            dispatch(failure({ error: message }));
+        }
+    };
 };
 
-function login(username, password) {
+const login = (username, password) => {
     return dispatch => {
         dispatch(request({ username }));
 
@@ -41,10 +50,7 @@ function logout() {
 
 function register(user) {
     return dispatch => {
-        console.log("dispatch");
         dispatch(request(user));
-        console.log("userActions ");
-        console.log(user);
         userService.register(user)
             .then(
                 user => { 
@@ -100,3 +106,12 @@ function _delete(id) {
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
+
+export const userActions = {
+    login,
+    logout,
+    register,
+    getAll,
+    getAllClient,
+    delete: _delete
+};
