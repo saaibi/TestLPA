@@ -1,19 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Editar from '../../../Common/Button';
-import Borrar from '../../../Common/Button';
+import Edit from '../../../Common/Button';
+import Delete from '../../../Common/Button';
+import View from '../../../Common/Button';
 
 const ActionBarGrid = ({ id, onEdit, onDelete }) => (
 	<div>
-		<Editar
-			className="btn-floating"
+		<Edit
+			className="btn-floating green"
 			texto="+"
 			onClick={ onEdit }
 		/>
-		<Borrar
+		<Delete
 			className="btn-floating red"
 			texto="-"
+			onClick={ onDelete }
+		/>
+		<View
+			className="btn-floating cyan pulse"
+			texto="º"
 			onClick={ onDelete }
 		/>
 	</div>
