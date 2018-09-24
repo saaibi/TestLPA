@@ -41,7 +41,7 @@ class Agenda extends Component {
 					<Form createClient={this.createClient} loadClient={this.loadClient} />
 				</div>
 				<div className="col s12 m8 l9">
-					<Grid contactos={client} />
+					<Grid clients={mockData} />
 				</div>
 			</div>
 		);

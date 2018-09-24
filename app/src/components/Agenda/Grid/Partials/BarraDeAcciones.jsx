@@ -5,15 +5,15 @@ import Editar from '../../../Common/Button';
 import Borrar from '../../../Common/Button';
 
 const BarraDeAcciones = ({ id, onEdit, onDelete }) => (
-	<div className="agenda--form_barra_acciones">
+	<div>
 		<Editar
-			className="borde-primario"
-			texto="Editar"
+			className="btn-floating"
+			texto="+"
 			onClick={ onEdit }
 		/>
 		<Borrar
-			className="borde-error"
-			texto="Borrar"
+			className="btn-floating "
+			texto="-"
 			onClick={ onDelete }
 		/>
 	</div>

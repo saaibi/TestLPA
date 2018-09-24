@@ -1,18 +1,13 @@
 import React from 'react';
 
 const Columnas = () => (
-	<div className=" ">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Item Name</th>
-				<th>Item Price</th>
-			</tr>
-		</thead>
-		<div className="agenda--grid_columna grid--25">Nombre</div>
-		<div className="agenda--grid_columna align-center grid--25">Celular</div>
-		<div className="agenda--grid_columna align-center grid--50"></div>
-	</div>
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
 );
 
 export default Columnas;

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import Fila from './Fila';
 
 const Filas = ({ contactos }) => (
-	<div className=" ">
-		{/* {
+	<tbody>
+		{
 			contactos.map(
-				(contacto, index) => <Fila key={ index } contacto={ contacto } />
+				(contacto, index) => <Fila key={index} contacto={contacto} />
 			)
-		} */}
-	</div>
+		}
+	</tbody>
 );
 
 Filas.propTypes = {
