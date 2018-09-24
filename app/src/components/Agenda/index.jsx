@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { connect } from 'react-redux';
 
 import { clienActions } from "../../actions/client.actions";
@@ -7,7 +7,7 @@ import Form from './Form';
 import Grid from './Grid';
 import mockData from './mockData';
 
-class Agenda extends React.Component {
+class Agenda extends Component {
 	constructor(props) {
 		super(props);
 	}

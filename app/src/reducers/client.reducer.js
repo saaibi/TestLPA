@@ -1,22 +1,23 @@
-import { OBTENER_CLIENT } from '../constants/client.constans';
-import { userConstants } from '../constants';
+import { OBTENER_CLIENT, BORRAR_CLIENT } from '../constants/client.constans';
 
-export function client(state = {}, action) {
-  switch (action.type) {
+const etateInicial = {
+  clients: [],
+  isLoading: false,
+  error: '',
+};
+
+
+export function client(state = etateInicial, action) {
+  const { type, payload } = action;
+  switch (type) {
     case OBTENER_CLIENT.REQUEST:
-      return {
-        loading: true
-      };
     case OBTENER_CLIENT.SUCCESS:
-      return {
-        items: action.users
-      };
     case OBTENER_CLIENT.FAILURE:
-      return { 
-        error: action.error
+      return {
+        ...state,
+        ...payload,
       };
-    case userConstants.DELETE_REQUEST:
-      // add 'deleting:true' property to user being deleted
+    case BORRAR_CLIENT.REQUEST:
       return {
         ...state,
         items: state.items.map(user =>
@@ -25,20 +26,16 @@ export function client(state = {}, action) {
             : user
         )
       };
-    case userConstants.DELETE_SUCCESS:
-      // remove deleted user from state
+    case BORRAR_CLIENT.SUCCESS:
       return {
         items: state.items.filter(user => user.id !== action.id)
       };
-    case userConstants.DELETE_FAILURE:
-      // remove 'deleting:true' property and add 'deleteError:[error]' property to user 
+    case BORRAR_CLIENT.FAILURE:
       return {
         ...state,
         items: state.items.map(user => {
           if (user.id === action.id) {
-            // make copy of user without 'deleting:true' property
             const { deleting, ...userCopy } = user;
-            // return copy of user with 'deleteError:[error]' property
             return { ...userCopy, deleteError: action.error };
           }
 

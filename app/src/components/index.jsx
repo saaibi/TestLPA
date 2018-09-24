@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { connect } from "react-redux";
 
 import AppHeader from './AppHeader';
 import Agenda from './Agenda';
 
-class AppAgenda extends React.Component {
+class AppAgenda extends Component {
 	constructor(props) {
 		super(props);
 	}

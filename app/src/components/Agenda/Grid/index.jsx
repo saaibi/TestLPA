@@ -5,10 +5,10 @@ import Columnas from './Partials/Columnas';
 import Filas from './Partials/Filas';
 // import contactos from "../../../reducers/contactos";
 
-const Grid = ({ contactos }) => {
-	const numbers = [1, 2, 3, 4, 5];
-	console.log(numbers.map((number) => console.log(number)));
-	console.log(contactos)
+const Grid = ({ clients }) => {
+	// const numbers = [1, 2, 3, 4, 5];
+	// console.log(numbers.map((number) => console.log(number)));
+		console.log("#####",clients )
 	// console.log( contactos.map((contac) => console.log(contac)))
 	return (
 		<div className=" ">

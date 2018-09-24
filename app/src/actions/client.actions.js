@@ -5,9 +5,31 @@ import { OBTENER_CLIENT } from '../constants/client.constans';
 
 
 const getAllClient = () => {
-    const request = () => ({ type: OBTENER_CLIENT.REQUEST });
-    const success = users => ({ type: OBTENER_CLIENT.SUCCESS, users });
-    const failure = error => ({ type: OBTENER_CLIENT.FAILURE, error });
+    const request = () => ({
+        type: OBTENER_CLIENT.REQUEST,
+        payload: {
+            clients: [],
+            isLoading: true,
+            error: '',
+        },
+    });
+
+    const success = clients => ({
+        type: OBTENER_CLIENT.SUCCESS,
+        payload: {
+            clients,
+            isLoading: false,
+            error: '',
+        },
+    });
+
+    const failure = error => ({
+        type: OBTENER_CLIENT.FAILURE,
+        payload: {
+            isLoading: true,
+            error,
+        },
+    });
 
     return async dispatch => {
         dispatch(request());
