@@ -1,18 +1,25 @@
+import axios from 'axios';
+
+import {apiUrl} from '../utils/http'
 import { userConstants } from '../constants';
+import {OBTENER_CLIENT  } from '../constants/client.constans';
 import { userService } from '../services';
 import { alertActions } from './';
 import { history } from '../helpers';
 
+
 const getAllClient = () => {
-    const request = () => ({ type: USERS_GETALL.REQUEST });
-    const success = users => ({ type: USERS_GETALL.SUCCESS, users });
-    const failure = error => ({ type: USERS_GETALL.FAILURE, error });
+    const request = () => ({ type:  OBTENER_CLIENT.REQUEST});
+    const success = users => ({ type: OBTENER_CLIENT.SUCCESS, users });
+    const failure = error => ({ type: OBTENER_CLIENT.FAILURE, error });
 
     return async dispatch => {
         dispatch(request());
         try {
-            const users = await makeRequestAsync(`/user`, "GET");
-            dispatch(success(users));
+            console.log("############")
+            const users = await axios(`${apiUrl}/clients`, "GET");
+            console.log(users)
+            dispatch(success(users.data));
         } catch (error) {
             const message = handleError(error, "Unregistered user");
             dispatch(failure({ error: message }));

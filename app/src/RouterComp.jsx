@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from  "react";
 import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -9,7 +9,9 @@ import { HomePage } from "./HomePage";
 import { LoginPage } from "./LoginPage";
 import { RegisterPage } from "./RegisterPage";
 
-class App extends React.Component {
+import { userActions } from "./actions";
+
+class RouterComp extends Component {
   constructor(props) {
     super(props);
     const { dispatch } = this.props;
@@ -43,12 +45,10 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   const { alert } = state;
-  console.log("state App");
-  console.log(state);
   return {
     alert
   };
 }
 
-const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App };
+const connectedApp = connect(mapStateToProps)(RouterComp);
+export { connectedApp as RouterComp };
