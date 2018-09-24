@@ -8,7 +8,7 @@ import Filas from './Partials/Filas';
 const Grid = ({ clients }) => {
 	// const numbers = [1, 2, 3, 4, 5];
 	// console.log(numbers.map((number) => console.log(number)));
-		console.log("#####",clients )
+	console.log("#####", clients)
 	// console.log( contactos.map((contac) => console.log(contac)))
 	return (
 		<div className=" ">
@@ -24,6 +24,9 @@ const Grid = ({ clients }) => {
 				</thead>
 				<tbody>
 					<tr>
+						<td>Alvin</td>
+						<td>Eclair</td>
+						<td>$0.87</td>
 						{/* {
 							contactos.map(
 								(contacto, index) => <Fila key={index} contacto={contacto} />

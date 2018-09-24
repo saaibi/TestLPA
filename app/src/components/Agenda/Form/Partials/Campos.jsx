@@ -1,19 +1,23 @@
 import React from 'react';
 
-import Nombre from '../../../Common/Input';
-import Celular from '../../../Common/Input';
+import FirtsName from '../../../Common/Input';
+import LastsName from '../../../Common/Input';
+import Id from '../../../Common/Input';
 
 const Campos = () => (
 	<div>
 		<div className="input-field col s12">
-			<Nombre />
+			<FirtsName />
 			<label htmlFor="firts_name">Firts Name</label>
 		</div>
 		<div className="input-field col s12">
-			<Celular className="" />
+			<LastsName className="" />
 			<label htmlFor="last_name">Last Name</label>
 		</div>
-
+		<div className="input-field col s12">
+			<Id className="" />
+			<label htmlFor="id">Id</label>
+		</div>
 	</div>
 );
 

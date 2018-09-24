@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Button = ({ className, texto, onClick }) => {
 	return (
 		<button
-			className={ `common--button ${className}` }
+			className={ className }
 			onClick={ onClick }
 		>
 			{ texto }

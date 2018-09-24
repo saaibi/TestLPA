@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ className, valor, placeholder }) => {
+const Input = ({ className, type, valor, placeholder }) => {
 	return (
 		<input
-			className={ `common--input_text ${className}` }
-			type="text"
+			className={ className }
+			type={type}
 			placeholder={ placeholder }
 			value={ valor }
 		/>
@@ -14,6 +14,7 @@ const Input = ({ className, valor, placeholder }) => {
 
 Input.defaultProps = {
 	className: '',
+	type: 'text'
 };
 
 Input.propTypes = {

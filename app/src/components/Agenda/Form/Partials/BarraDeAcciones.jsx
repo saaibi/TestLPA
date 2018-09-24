@@ -4,9 +4,13 @@ import Guardar from '../../../Common/Button';
 import Limpiar from '../../../Common/Button';
 
 const BarraDeAcciones = () => (
-	<div className="">
-		<Guardar className="waves-effect waves-light btn" texto="Guardar" />
-		<Limpiar className="waves-effect waves-light btn" texto="Limpiar" />
+	<div>
+		<div className="input-field col s6">
+			<Guardar className="waves-effect waves-light btn" texto="Guardar" />
+		</div>
+		<div className="input-field col s6">
+			<Limpiar className="waves-effect waves-light btn" texto="Limpiar" />
+		</div>
 	</div>
 );
 
