@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Columnas = () => (
+const Columns = () => (
 	<thead>
 		<tr>
 			<th>First Name</th>
@@ -10,4 +10,4 @@ const Columnas = () => (
 	</thead>
 );
 
-export default Columnas;
+export default Columns;
