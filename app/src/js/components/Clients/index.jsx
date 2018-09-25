@@ -26,16 +26,23 @@ class Client extends Component {
 	}
 
 	createClient = (e) => {
-		console.log("######", e)
+		e.preventDefault();
+		this.props.dispatch(clienActions.createClient(this.state.client));
 	}
 
 	loadClient = (event) => {
-		console.log("$$$$$", event.target.value)
+		const { client } = this.state;
+		const { value ,name } = event.target;
+		this.setState({
+			client:{
+				...client,
+				[name]:value
+			}
+		})
 	}
 
 	render() {
 		const { client } = this.props;
-		console.log(client.clients)
 
 		if (client.isLoading || !client.clients) {
 			return (

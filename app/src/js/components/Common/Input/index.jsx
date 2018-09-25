@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ className, type, valor, placeholder, onChange }) => {
+const Input = ({ className, type, valor,name, placeholder, onChange }) => {
 	return (
 		<input
 			className={ className }
@@ -9,6 +9,7 @@ const Input = ({ className, type, valor, placeholder, onChange }) => {
 			onChange={ onChange }
 			placeholder={ placeholder }
 			value={ valor }
+			name={name}
 		/>
 	);
 };
@@ -19,6 +20,7 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+	name: PropTypes.string.isRequired,
 	onChange : PropTypes.func,
 	value: PropTypes.oneOfType([
 		PropTypes.string,

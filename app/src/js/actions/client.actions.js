@@ -1,7 +1,5 @@
-import axios from 'axios';
-
-import { apiUrl } from '../utils/http'
-import { CLIENT_GET , CLIENT_CREATE } from '../constants/client.constans';
+import { makeRequestAsync } from '../services'
+import { CLIENT_GET, CLIENT_CREATE } from '../constants/client.constans';
 
 
 const getAllClient = () => {
@@ -34,8 +32,8 @@ const getAllClient = () => {
     return async dispatch => {
         dispatch(request());
         try {
-            const users = await axios(`${apiUrl}/clients`, "GET");
-            dispatch(success(users.data));
+            const clients = await makeRequestAsync(`/clients`, "GET");
+            dispatch(success(clients.data));
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));
@@ -44,7 +42,7 @@ const getAllClient = () => {
 };
 
 
-const createClient = () => {
+const createClient = (client) => {
     const request = () => ({
         type: CLIENT_CREATE.REQUEST,
         payload: {
@@ -74,8 +72,9 @@ const createClient = () => {
     return async dispatch => {
         dispatch(request());
         try {
-            const users = await axios(`${apiUrl}/clients`, "GET");
-            dispatch(success(users.data));
+            const clients = await makeRequestAsync(`/clients`, "POST" , client);
+            console.log(clients.data)
+            dispatch(success(clients.data));
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));

@@ -6,7 +6,6 @@ import Rows from './Partials/Rows';
 
 const Grid = (props) => {
 	const { clients } = props;
-	console.log(clients)
 	return (
 		<table className="striped centered">
 			<Columns />
