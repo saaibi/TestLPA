@@ -7,7 +7,7 @@ import Form from './Form';
 import Grid from './Grid';
 import mockData from './mockData';
 
-class Agenda extends Component {
+class Client extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => ({
 	client: state.client.items,
 });
 
-export default connect(mapStateToProps)(Agenda);
+export default connect(mapStateToProps)(Client);

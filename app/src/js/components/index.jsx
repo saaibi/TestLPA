@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 import { connect } from "react-redux";
 
 import AppHeader from './AppHeader';
-import Agenda from './Agenda';
+import Client from './Clients';
 
-class AppAgenda extends Component {
+class AppClient extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -13,7 +13,7 @@ class AppAgenda extends Component {
 		return (
 			<div className="container">
 				<AppHeader />
-				<Agenda />
+				<Client />
 			</div>
 		);
 	}
@@ -24,5 +24,5 @@ function mapStateToProps(state) {
 		state
 	};
 }
-const connectedLoginPage = connect(mapStateToProps)(AppAgenda);
-export { connectedLoginPage as AppAgenda };
+const connectedLoginPage = connect(mapStateToProps)(AppClient);
+export { connectedLoginPage as AppClient };

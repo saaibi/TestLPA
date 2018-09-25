@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { history } from "./utils/history";
 import { alertActions } from "./actions/alert.actions";
-import {  AppAgenda } from "./components";
+import { AppClient  } from "./components";
 
 class RouterComp extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class RouterComp extends Component {
             )}
             <Router history={history}>
               <div>
-                <Route path="/" component={AppAgenda} />
+                <Route path="/" component={AppClient} />
               </div>
             </Router>
       </div>
