@@ -31,6 +31,7 @@ const Fields = (props) => (
 			classNameIcon="prefix"
 			onChange={props.loadClient}
 		/>
+		
 	</div>
 );
 

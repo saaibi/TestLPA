@@ -5,6 +5,7 @@ import { clienActions } from "../../actions/client.actions";
 
 import Form from './Form';
 import Grid from './Grid';
+import Modal from '../Common/Modal';
 
 class Client extends Component {
 	constructor(props) {
@@ -17,7 +18,9 @@ class Client extends Component {
 			lastName: "",
 			client_id: "",
 			credit: {}
-		}
+		},
+		headerModal: "",
+		contentModal: "",
 	}
 
 	componentWillMount() {
@@ -31,13 +34,22 @@ class Client extends Component {
 
 	loadClient = (event) => {
 		const { client } = this.state;
-		const { value ,name } = event.target;
+		const { value, name } = event.target;
 		this.setState({
-			client:{
+			client: {
 				...client,
-				[name]:value
+				[name]: value
 			}
 		})
+	}
+
+	optionsClient = (e) => {
+		const { headerModal, contentModal , id } = e;
+		this.setState({
+			headerModal,
+			contentModal
+		})
+		$('#modalClient').modal('open')
 	}
 
 	render() {
@@ -56,8 +68,13 @@ class Client extends Component {
 					<Form createClient={this.createClient} loadClient={this.loadClient} />
 				</div>
 				<div className="col s12 m8 l9">
-					<Grid clients={client.clients} />
+					<Grid clients={client.clients} optionsClient={this.optionsClient} />
 				</div>
+				<Modal
+					id="modalClient"
+					header={this.state.headerModal}
+					content={this.state.contentModal}
+				/>
 			</div>
 		);
 	}

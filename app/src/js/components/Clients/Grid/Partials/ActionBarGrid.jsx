@@ -1,55 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'react-materialize';
-
 import Edit from '../../../Common/Button';
 import Delete from '../../../Common/Button';
 import View from '../../../Common/Button';
 
-import Modal from '../../../Common/Modal';
-
-
-
 
 const ActionBarGrid = ({ id, onEdit, onDelete, onView }) => (
 	<div>
-		<Button onClick={() => {
-			$('#foo').modal('open')
-		}}>Show Modal</Button>
-	
 		<Edit
 			className="btn-floating green pulse"
 			icon="edit"
 			classNameIcon="prefix"
-			onClick={onEdit}
+			onClick={(e) => onEdit(id)}
 		/>
 
 		<Delete
 			className="btn-floating red"
 			icon="delete_forever"
 			classNameIcon="prefix"
-			onClick={onDelete}
+			onClick={(e) => onDelete(id)}
 		/>
 		
 		<View
 			className="btn-floating cyan "
 			icon="visibility"
 			classNameIcon="prefix"
-			onClick={onView}
-		/>
-
-		<Modal
-			id="foo"
-			content="#####"
+			onClick={(e) => onView(id)}
 		/>
 	</div>
 );
 
 ActionBarGrid.propTypes = {
-	id: PropTypes.number,
+	id: PropTypes.string,
 	onEdit: PropTypes.func,
 	onDelete: PropTypes.func,
+	onView: PropTypes.func,
 };
 
 export default ActionBarGrid;
