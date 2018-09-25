@@ -1,20 +1,19 @@
 import { CLIENT_GET, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE } from '../constants/client.constans';
 
-const etateInicial = {
+const initialState = {
   clients: [],
   isLoading: false,
   error: '',
 };
 
 
-export function client(state = etateInicial, action) {
+export function client(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case CLIENT_GET.REQUEST:
     case CLIENT_GET.SUCCESS:
     case CLIENT_GET.FAILURE:
       return {
-        ...state,
         ...payload,
       };
     case CLIENT_DELETE.REQUEST:

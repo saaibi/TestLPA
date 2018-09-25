@@ -10,13 +10,13 @@ const Grid = (props) => {
 	return (
 		<table className="striped centered">
 			<Columns />
-			<Rows contactos={clients} />
+			<Rows clients={clients} />
 		</table>
 	);
 }
 
 Grid.propTypes = {
-	contactos: PropTypes.array,
+	clients: PropTypes.array,
 };
 
 export default Grid;

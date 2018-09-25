@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 import Row from './Row';
 
-const Rows = ({ contactos }) => (
+const Rows = ({ clients }) => (
 	<tbody>
 		{
-			contactos.map(
-				(contacto, index) => <Row key={index} contacto={contacto} />
+			clients.map(
+				(client, index) => <Row key={index} client={client} />
 			)
 		}
 	</tbody>
 );
 
 Rows.propTypes = {
-	contactos: PropTypes.array,
+	clients: PropTypes.array,
 };
 
 export default Rows;

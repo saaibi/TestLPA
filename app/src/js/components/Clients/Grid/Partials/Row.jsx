@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import ActionBarGrid from './ActionBarGrid';
 
-const Row = ({ contacto, onEdit, onDelete }) => (
+const Row = ({ client, onEdit, onDelete }) => (
 	<tr>
-		<td>{contacto.nombre}</td>
-		<td>{contacto.celular}</td>
+		<td>{client.firstName}</td>
+		<td>{client.lastName}</td>
 		<td>
 			<ActionBarGrid
-				id={contacto.id}
+				id={client.id}
 				onEdit={onEdit}
 				onDelete={onDelete}
 			/>
@@ -18,7 +18,7 @@ const Row = ({ contacto, onEdit, onDelete }) => (
 );
 
 Row.propTypes = {
-	contacto: PropTypes.object,
+	client: PropTypes.object,
 	onEdit: PropTypes.func,
 	onDelete: PropTypes.func,
 };
