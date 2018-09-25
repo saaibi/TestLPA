@@ -13,24 +13,26 @@ clientController.getByIdClient = async (req, res) => {
 };
 
 clientController.createClient = async (req, res) => {
-    const { firstName, lastName, document, credit } = req.body;
+    const { firstName, lastName, client_id, credit } = req.body;
     const client = new Client({
-        firstName, lastName, document, credit,
+        firstName, lastName, client_id, credit,
     });
-    await client.save();
-    res.json({ status: "Client Saved" });
+    await client.save((err, client) => {
+        if (err) return res.json({error: err});
+        res.json({ status: "Client Saved", client });
+    });
 };
 
 clientController.updateClient = async (req, res) => {
-    const { firstName, lastName, document } = req.body;
-    const clientUpdate = { firstName, lastName, document };
+    const { firstName, lastName, client_id } = req.body;
+    const clientUpdate = { firstName, lastName, client_id };
     await Client.findByIdAndUpdate(req.params.id, clientUpdate);
     res.json({ status: "Client Updated" });
 };
 
 clientController.updateCredit = async (req, res) => {
     const { credit } = req.body;
-    await Client.update({ _id: req.params.id }, { $set: { credit: credit }});
+    await Client.update({ _id: req.params.id }, { $set: { credit: credit } });
     res.json({ status: "Credit Updated" });
 };
 

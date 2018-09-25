@@ -13,34 +13,46 @@ export function client(state = initialState, action) {
     case CLIENT_GET.REQUEST:
     case CLIENT_GET.SUCCESS:
     case CLIENT_GET.FAILURE:
+    case CLIENT_CREATE.REQUEST:
+    case CLIENT_CREATE.FAILURE:
       return {
+        ...state,
         ...payload,
       };
-    case CLIENT_DELETE.REQUEST:
-      return {
-        ...state,
-        items: state.items.map(user =>
-          user.id === action.id
-            ? { ...user, deleting: true }
-            : user
-        )
-      };
-    case CLIENT_DELETE.SUCCESS:
-      return {
-        items: state.items.filter(user => user.id !== action.id)
-      };
-    case CLIENT_DELETE.FAILURE:
-      return {
-        ...state,
-        items: state.items.map(user => {
-          if (user.id === action.id) {
-            const { deleting, ...userCopy } = user;
-            return { ...userCopy, deleteError: action.error };
-          }
 
-          return user;
-        })
+    case CLIENT_CREATE.SUCCESS: {
+      const { client } = payload;
+      return {
+        ...state,
+        clients: [...state.clients, client]
       };
+    }
+
+    case CLIENT_UPDATE.SUCCESS: {
+      const { contacto, index, ...propEstados } = payload;
+      return {
+        ...state,
+        ...propEstados,
+        contactos: [
+          ...state.contactos.slice(0, index),
+          contacto,
+          ...state.contactos.slice(index + 1),
+        ],
+      };
+    }
+
+    case CLIENT_DELETE.SUCCESS: {
+      const { index, ...propEstados } = payload;
+      return {
+        ...state,
+        ...propEstados,
+        contactos: [
+          ...state.contactos.slice(0, index),
+          ...state.contactos.slice(index + 1),
+        ],
+      };
+    }
+
     default:
       return state
   }

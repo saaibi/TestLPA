@@ -5,7 +5,6 @@ import { clienActions } from "../../actions/client.actions";
 
 import Form from './Form';
 import Grid from './Grid';
-import mockData from './mockData';
 
 class Client extends Component {
 	constructor(props) {
@@ -16,7 +15,7 @@ class Client extends Component {
 		client: {
 			firstName: "",
 			lastName: "",
-			document: "",
+			client_id: "",
 			credit: {}
 		}
 	}

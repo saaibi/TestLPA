@@ -15,7 +15,7 @@ const Fields = (props) => (
 			<label htmlFor="last_name">Last Name</label>
 		</div>
 		<div className="input-field col s12">
-			<Id name="lastName" className=""  onChange={props.loadClient}/>
+			<Id name="client_id" className=""  onChange={props.loadClient}/>
 			<label htmlFor="id">Id</label>
 		</div>
 	</div>

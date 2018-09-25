@@ -29,7 +29,7 @@ const getAllClient = () => {
         },
     });
 
-    return async dispatch => {
+    return async (dispatch, getState) => {
         dispatch(request());
         try {
             const clients = await makeRequestAsync(`/clients`, "GET");
@@ -42,7 +42,7 @@ const getAllClient = () => {
 };
 
 
-const createClient = (client) => {
+const createClient = (clientCreate) => {
     const request = () => ({
         type: CLIENT_CREATE.REQUEST,
         payload: {
@@ -52,10 +52,10 @@ const createClient = (client) => {
         },
     });
 
-    const success = clients => ({
+    const success = client => ({
         type: CLIENT_CREATE.SUCCESS,
         payload: {
-            clients,
+            client,
             isLoading: false,
             error: '',
         },
@@ -69,12 +69,11 @@ const createClient = (client) => {
         },
     });
 
-    return async dispatch => {
-        dispatch(request());
+    return async (dispatch, getState) => {
+        //  dispatch(request());
         try {
-            const clients = await makeRequestAsync(`/clients`, "POST" , client);
-            console.log(clients.data)
-            dispatch(success(clients.data));
+            const client = await makeRequestAsync(`/clients`, "POST" , clientCreate);
+            dispatch(success(client.data.client));
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));

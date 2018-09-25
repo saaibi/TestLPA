@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const ClientSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    document: { type: String, requerid: true },
+    client_id: { type: String, requerid: true },
     credit: {
         value: { type: Number, default: 0 },
         interest: { type: Number, default: 0 },
