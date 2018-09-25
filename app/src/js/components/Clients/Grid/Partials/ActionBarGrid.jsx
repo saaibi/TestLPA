@@ -14,7 +14,8 @@ const ActionBarGrid = ({ id, onEdit, onDelete, onView }) => (
 			header='Edit'
 			trigger={<Edit
 				className="btn-floating green pulse"
-				texto="+"
+				icon="edit"
+				classNameIcon="prefix"
 				onClick={onEdit}
 			/>}>
 			<p>L est laborum</p>
@@ -22,12 +23,14 @@ const ActionBarGrid = ({ id, onEdit, onDelete, onView }) => (
 
 		<Delete
 			className="btn-floating red"
-			texto="-"
+			icon="delete_forever"
+			classNameIcon="prefix"
 			onClick={onDelete}
 		/>
 		<View
 			className="btn-floating cyan "
-			texto="º"
+			icon="visibility"
+			classNameIcon="prefix"
 			onClick={onView}
 		/>
 	</div>

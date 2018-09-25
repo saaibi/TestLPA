@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ className, texto, onClick }) => {
+import Icons from '../Icons';
+
+const Button = ({ className, texto, onClick, icon, classNameIcon }) => {
 	return (
 		<button
-			className={ className }
-			onClick={ onClick }
+			className={className}
+			onClick={onClick}
 		>
-			{ texto }
+			{icon && (<Icons
+				className={classNameIcon}
+				icon={icon}
+			/>)}
+			{texto}
 		</button>
 	);
 };
@@ -18,6 +24,11 @@ Button.defaultProps = {
 
 Button.propTypes = {
 	className: PropTypes.string,
+	classNameIcon: (props, propName, componentName) => {
+		if(props.icon && (!props.classNameIcon)){
+			return new Error(`Invalid prop '${propName}' supplied to '${componentName}' .Validation failed`);
+		}
+	},
 	onClick: PropTypes.func,
 	value: PropTypes.string,
 };
