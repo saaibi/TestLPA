@@ -9,8 +9,8 @@ const ActionBar = (props) => (
 			<Save
 				className="waves-effect waves-light btn"
 				texto="Save"
-				icon="save"
-				classNameIcon="left"
+				icon="send"
+				classNameIcon="right"
 				onClick={props.createClient}
 			/>
 		</div>
@@ -19,8 +19,7 @@ const ActionBar = (props) => (
 				className="waves-effect waves-light btn"
 				texto="Clear"
 				icon="delete_sweep"
-				classNameIcon="left"
-				onClick={props.createClient}
+				classNameIcon="right"
 			/>
 		</div>
 	</div>

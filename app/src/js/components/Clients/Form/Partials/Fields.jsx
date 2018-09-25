@@ -6,18 +6,31 @@ import Id from '../../../Common/Input';
 
 const Fields = (props) => (
 	<div>
-		<div className="input-field col s12">
-			<FirtsName name="firstName" onChange={props.loadClient}/>
-			<label htmlFor="firts_name">Firts Name</label>
-		</div>
-		<div className="input-field col s12">
-			<LastsName name="lastName" className="" onChange={props.loadClient} />
-			<label htmlFor="last_name">Last Name</label>
-		</div>
-		<div className="input-field col s12">
-			<Id name="client_id" className=""  onChange={props.loadClient}/>
-			<label htmlFor="id">Id</label>
-		</div>
+		<FirtsName
+			id="firts_name"
+			name="firstName"
+			text="Firts Name"
+			icon="account_circle"
+			classNameIcon="prefix"
+			onChange={props.loadClient}
+		/>
+	
+		<LastsName
+			id="last_name"
+			name="lastName"
+			text="Last Name"
+			icon="perm_identity"
+			classNameIcon="prefix"
+			onChange={props.loadClient}
+		/>
+		<Id
+			id="client_id"
+			name="client_id"
+			text="Id"
+			icon="fingerprint"
+			classNameIcon="prefix"
+			onChange={props.loadClient}
+		/>
 	</div>
 );
 

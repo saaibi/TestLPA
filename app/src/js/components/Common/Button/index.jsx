@@ -23,14 +23,15 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+	value: PropTypes.string,
 	className: PropTypes.string,
+	onClick: PropTypes.func,
+	icon: PropTypes.string,
 	classNameIcon: (props, propName, componentName) => {
 		if(props.icon && (!props.classNameIcon)){
 			return new Error(`Invalid prop '${propName}' supplied to '${componentName}' .Validation failed`);
 		}
 	},
-	onClick: PropTypes.func,
-	value: PropTypes.string,
 };
 
 export default Button;
