@@ -112,6 +112,7 @@ const createClient = (clientCreate) => {
         try {
             const client = await makeRequestAsync(`/clients`, "POST", clientCreate);
             dispatch(success(client.data.client));
+            M.toast({html: `${client.data.status}`, classes: 'rounded'});
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));
@@ -157,6 +158,7 @@ const updateClient = (client_id, clientUpdate) => {
 
             const client = await makeRequestAsync(`/clients/${client_id}/client`, "PUT", clientUpdate);
             dispatch(success(index, client.data.client));
+            M.toast({html: `${client.data.status}`, classes: 'rounded'});
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));
@@ -200,8 +202,8 @@ const deleteClient = (client_id) => {
             if (index === -1) return dispatch(failure("User Not found"));
 
             const client = await makeRequestAsync(`/clients/${client_id}`, "DELETE");
-            console.log("########",client)
             dispatch(success(index));
+            M.toast({html: `${client.data.status}`, classes: 'rounded'});
         } catch (error) {
             const message = error.message || error;
             dispatch(failure(message));

@@ -36,12 +36,12 @@ clientController.updateClient = async (req, res) => {
 clientController.updateCredit = async (req, res) => {
     const { credit } = req.body;
     await Client.update({ _id: req.params.id }, { $set: { credit: credit } });
-    res.json({ status: "Credit Updated" });
+    res.json({ status: "Credit Created" });
 };
 
 clientController.deleteClient = async (req, res) => {
     await Client.findByIdAndRemove(req.params.id);
-    res.json({ status: "Client Deleted" });
+    res.json({ status: "Client Removed" });
 };
 
 module.exports = clientController;
