@@ -44,31 +44,36 @@ class Client extends Component {
 	}
 
 	optionsClient = (e) => {
-		const { headerModal, contentModal , id } = e;
+		const { headerModal, contentModal, id } = e;
 		this.setState({
 			headerModal,
 			contentModal
 		})
+		this.props.dispatch(clienActions.getById(id));
 		$('#modalClient').modal('open')
 	}
 
 	render() {
-		const { client } = this.props;
+		const { clients ,client } = this.props;
+		
 
-		if (client.isLoading || !client.clients) {
-			return (
-				<div>
-					<p>Loading....</p>
-				</div>
-			)
+		if (clients.isLoading) {
+			if (!clients.clients) {
+				return (
+					<div>
+						<p>Loading....</p>
+					</div>
+				)
+			}
 		}
+		console.log(client)
 		return (
 			<div className="row">
 				<div className="col s12 m4 l3">
 					<Form createClient={this.createClient} loadClient={this.loadClient} />
 				</div>
 				<div className="col s12 m8 l9">
-					<Grid clients={client.clients} optionsClient={this.optionsClient} />
+					<Grid clients={clients.clients} optionsClient={this.optionsClient} />
 				</div>
 				<Modal
 					id="modalClient"
@@ -81,7 +86,8 @@ class Client extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	client: state.client,
+	clients: state.client,
+	client: state.client.client,
 });
 
 export default connect(mapStateToProps)(Client);
