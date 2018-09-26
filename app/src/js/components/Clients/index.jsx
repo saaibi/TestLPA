@@ -6,6 +6,7 @@ import { clienActions } from "../../actions/client.actions";
 import Form from './Form';
 import Grid from './Grid';
 import Edit from './Edit';
+import View from './View';
 import Modal from '../Common/Modal';
 import Progress from '../Common/Utils/Progress';
 
@@ -105,7 +106,7 @@ class Client extends Component {
 
 		let content = contentModal == "edit" ? content =
 			<Edit client={clientEdit} updateClient={this.updateClient} loadClient={this.loadClientEdit} /> : content =
-			"Hello!!";
+			<View />;
 
 		return (
 			<div className="row">
