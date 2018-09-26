@@ -12,7 +12,7 @@ const Fields = (props) => (
 			text="Firts Name"
 			autoFocus={true}
 			icon="account_circle"
-            classNameIcon="prefix"
+			classNameIcon="prefix"
 			onChange={(e) => props.loadClient(e)}
 		/>
 	

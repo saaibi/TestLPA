@@ -22,6 +22,7 @@ class RouterComp extends Component {
             {alert.message && (
               <div className={`alert ${alert.type}`}>{alert.message}</div>
             )}
+            <dir></dir>
             <Router history={history}>
               <div>
                 <Route path="/" component={AppClient} />

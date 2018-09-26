@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Icons from '../Icons';
 
-const Input = ({ id, name, value, text, type, autoFocus, className, classNameInput, placeholder, onChange, icon, classNameIcon }) => {
+const Input = ({ id, name, value, text, type, autoFocus, className, classNameInput, classNameLabel, placeholder, onChange, icon, classNameIcon }) => {
 	return (
 		<div className={`input-field ${className}`}>
 			{icon && (<Icons
@@ -20,7 +20,7 @@ const Input = ({ id, name, value, text, type, autoFocus, className, classNameInp
 				placeholder={placeholder}
 				onChange={onChange}
 			/>
-			<label htmlFor={id}>{text}</label>
+			<label htmlFor={id} className={classNameLabel}>{text}</label>
 		</div>
 	);
 };
@@ -28,6 +28,7 @@ const Input = ({ id, name, value, text, type, autoFocus, className, classNameInp
 Input.defaultProps = {
 	className: 'col s12',
 	classNameInput: "validate",
+	classNameLabel: 'active',
 	type: 'text',
 	autoFocus: false
 };

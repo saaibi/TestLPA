@@ -7,6 +7,7 @@ import Form from './Form';
 import Grid from './Grid';
 import Edit from './Edit';
 import Modal from '../Common/Modal';
+import Progress from '../Common/Utils/Progress';
 
 class Client extends Component {
 	constructor(props) {
@@ -97,9 +98,7 @@ class Client extends Component {
 		if (clients.isLoading) {
 			if (!clients.clients) {
 				return (
-					<div>
-						<p>Loading....</p>
-					</div>
+					<Progress type="circle"/>
 				)
 			}
 		}
