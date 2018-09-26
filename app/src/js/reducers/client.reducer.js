@@ -40,14 +40,14 @@ export function client(state = initialState, action) {
     }
 
     case CLIENT_UPDATE.SUCCESS: {
-      const { contacto, index, ...propEstados } = payload;
+      const { client, index, ...propEstados } = payload;
       return {
         ...state,
         ...propEstados,
-        contactos: [
-          ...state.contactos.slice(0, index),
-          contacto,
-          ...state.contactos.slice(index + 1),
+        clients: [
+          ...state.clients.slice(0, index),
+          client,
+          ...state.clients.slice(index + 1),
         ],
       };
     }

@@ -1,3 +1,4 @@
+import findIndex from 'lodash/findIndex'
 import { makeRequestAsync } from '../services'
 import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE } from '../constants/client.constans';
 
@@ -62,7 +63,7 @@ const getById = (id) => {
     const failure = error => ({
         type: CLIENT_GETBYID.FAILURE,
         payload: {
-            isLoading: true,
+            isLoading: false,
             error,
         },
     });
@@ -101,7 +102,7 @@ const createClient = (clientCreate) => {
     const failure = error => ({
         type: CLIENT_CREATE.FAILURE,
         payload: {
-            isLoading: true,
+            isLoading: false,
             error,
         },
     });
@@ -118,7 +119,7 @@ const createClient = (clientCreate) => {
     };
 };
 
-const updateClient = (id, clientUpdate) => {
+const updateClient = (client_id, clientUpdate) => {
     
     const request = () => ({
         type: CLIENT_UPDATE.REQUEST,
@@ -128,10 +129,11 @@ const updateClient = (id, clientUpdate) => {
         },
     });
 
-    const success = client => ({
+    const success = (index, client) => ({
         type: CLIENT_UPDATE.SUCCESS,
         payload: {
             client,
+            index,
             isLoading: false,
             error: '',
         },
@@ -140,7 +142,7 @@ const updateClient = (id, clientUpdate) => {
     const failure = error => ({
         type: CLIENT_UPDATE.FAILURE,
         payload: {
-            isLoading: true,
+            isLoading: false,
             error,
         },
     });
@@ -148,10 +150,13 @@ const updateClient = (id, clientUpdate) => {
     return async (dispatch, getState) => {
         dispatch(request());
         try {
-            console.log(clientUpdate)
-            const client = await makeRequestAsync(`/clients/${id}/client`, "PUT", clientUpdate);
-            console.log(client)
-            // dispatch(success(client.data.client));
+            const { clients  } = getState().client;
+            const index = findIndex(clients, {_id: client_id}); 
+            
+            if (index === -1) return dispatch(failure("User Not found"));
+
+            const client = await makeRequestAsync(`/clients/${client_id}/client`, "PUT", clientUpdate);
+            dispatch(success(index, client.data.client));
         } catch (error) {
             const message = error.message || error;
             dispatch(failure({ error: message }));

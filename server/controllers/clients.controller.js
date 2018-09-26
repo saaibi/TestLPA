@@ -18,7 +18,7 @@ clientController.createClient = async (req, res) => {
         firstName, lastName, client_id, credit,
     });
     await client.save((err, client) => {
-        if (err) return res.json({error: err});
+        if (err) return res.json({ error: err });
         res.json({ status: "Client Saved", client });
     });
 };
@@ -26,8 +26,11 @@ clientController.createClient = async (req, res) => {
 clientController.updateClient = async (req, res) => {
     const { firstName, lastName, client_id } = req.body;
     const clientUpdate = { firstName, lastName, client_id };
-    await Client.findByIdAndUpdate(req.params.id, clientUpdate);
-    res.json({ status: "Client Updated" });
+    await Client.findByIdAndUpdate(req.params.id, clientUpdate, { new: true }, (err, client) => {
+        if (err) return res.json({ error: err });
+        res.json({ status: "Client Updated", client });
+    });
+
 };
 
 clientController.updateCredit = async (req, res) => {

@@ -49,6 +49,7 @@ class Client extends Component {
 		e.preventDefault();
 		const { clientEdit } = this.state;
 		this.props.dispatch(clienActions.updateClient(clientEdit.client_id, clientEdit));
+		$('#modalClient').modal('close')
 	}
 
 	loadClient = (event) => {
