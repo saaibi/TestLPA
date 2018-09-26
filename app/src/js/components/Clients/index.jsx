@@ -5,6 +5,7 @@ import { clienActions } from "../../actions/client.actions";
 
 import Form from './Form';
 import Grid from './Grid';
+import Edit from './Edit';
 import Modal from '../Common/Modal';
 
 class Client extends Component {
@@ -19,12 +20,23 @@ class Client extends Component {
 			client_id: "",
 			credit: {}
 		},
+		clientEdit: {
+			firstName: "",
+			lastName: "",
+		},
 		headerModal: "",
 		contentModal: "",
 	}
 
 	componentWillMount() {
 		this.props.dispatch(clienActions.getAllClient());
+	}
+
+	componentWillReceiveProps(newProps) {
+		const { clientEdit } = this.state;
+		clientEdit.firstName = newProps.client.firstName;
+		clientEdit.lastName = newProps.client.lastName;
+		this.setState({ clientEdit });
 	}
 
 	createClient = (e) => {
@@ -43,6 +55,17 @@ class Client extends Component {
 		})
 	}
 
+	loadClientEdit = (event) => {
+		const { clientEdit } = this.state;
+		const { value, name } = event.target;
+		this.setState({
+			clientEdit: {
+				...clientEdit,
+				[name]: value
+			}
+		})
+	}
+
 	optionsClient = (e) => {
 		const { headerModal, contentModal, id } = e;
 		this.setState({
@@ -51,11 +74,12 @@ class Client extends Component {
 		})
 		this.props.dispatch(clienActions.getById(id));
 		$('#modalClient').modal('open')
+		
 	}
 
 	render() {
-		const { clients ,client } = this.props;
-		
+		const { clients } = this.props;
+		const { headerModal, contentModal, clientEdit } = this.state;
 
 		if (clients.isLoading) {
 			if (!clients.clients) {
@@ -66,7 +90,9 @@ class Client extends Component {
 				)
 			}
 		}
-		console.log(client)
+		
+		let content = contentModal == "edit" ? content = <Edit client={clientEdit} loadClient={this.loadClientEdit} /> : content = "Hello!!";
+
 		return (
 			<div className="row">
 				<div className="col s12 m4 l3">
@@ -77,8 +103,8 @@ class Client extends Component {
 				</div>
 				<Modal
 					id="modalClient"
-					header={this.state.headerModal}
-					content={this.state.contentModal}
+					header={headerModal}
+					content={content}
 				/>
 			</div>
 		);

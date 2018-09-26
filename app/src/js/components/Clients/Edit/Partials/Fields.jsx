@@ -2,37 +2,29 @@ import React from 'react';
 
 import FirtsName from '../../../Common/Input';
 import LastsName from '../../../Common/Input';
-import Id from '../../../Common/Input';
 
 const Fields = (props) => (
 	<div>
 		<FirtsName
 			id="firts_name"
-			name="firstName"
+            name="firstName"
+            value={props.client.firstName ? props.client.firstName: "" }
 			text="Firts Name"
 			autoFocus={true}
 			icon="account_circle"
-			classNameIcon="prefix"
-			onChange={props.loadClient}
+            classNameIcon="prefix"
+			onChange={(e) => props.loadClient(e)}
 		/>
 	
 		<LastsName
 			id="last_name"
-			name="lastName"
+            name="lastName"
+            value={props.client.lastName ? props.client.lastName: ""}
 			text="Last Name"
 			icon="perm_identity"
 			classNameIcon="prefix"
-			onChange={props.loadClient}
+			onChange={(e) => props.loadClient(e)}
 		/>
-		<Id
-			id="client_id"
-			name="client_id"
-			text="Id"
-			icon="fingerprint"
-			classNameIcon="prefix"
-			onChange={props.loadClient}
-		/>
-		
 	</div>
 );
 

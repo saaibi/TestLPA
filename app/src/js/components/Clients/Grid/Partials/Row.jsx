@@ -17,7 +17,7 @@ class Row extends Component {
 	onEdit = (id) => {
 		const data = {
 			headerModal: "Edit Client ",
-			contentModal: <Fields loadClient={this.loadClient} />,
+			contentModal: "edit",
 			id: id,
 		};
 		this.props.optionsClient(data)
@@ -30,7 +30,7 @@ class Row extends Component {
 	onView = (id) => {
 		const data = {
 			headerModal: "View Client ",
-			contentModal: "Hello!!!",
+			contentModal: "view",
 			id: id,
 		};
 		this.props.optionsClient(data)
