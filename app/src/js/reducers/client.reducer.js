@@ -53,13 +53,12 @@ export function client(state = initialState, action) {
     }
 
     case CLIENT_DELETE.SUCCESS: {
-      const { index, ...propEstados } = payload;
+      const { index } = payload;
       return {
         ...state,
-        ...propEstados,
-        contactos: [
-          ...state.contactos.slice(0, index),
-          ...state.contactos.slice(index + 1),
+        clients: [
+          ...state.clients.slice(0, index),
+          ...state.clients.slice(index + 1),
         ],
       };
     }

@@ -1,6 +1,6 @@
 import findIndex from 'lodash/findIndex'
 import { makeRequestAsync } from '../services'
-import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE } from '../constants/client.constans';
+import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE } from '../constants/client.constans';
 
 
 const getAllClient = () => {
@@ -120,7 +120,7 @@ const createClient = (clientCreate) => {
 };
 
 const updateClient = (client_id, clientUpdate) => {
-    
+
     const request = () => ({
         type: CLIENT_UPDATE.REQUEST,
         payload: {
@@ -150,9 +150,9 @@ const updateClient = (client_id, clientUpdate) => {
     return async (dispatch, getState) => {
         dispatch(request());
         try {
-            const { clients  } = getState().client;
-            const index = findIndex(clients, {_id: client_id}); 
-            
+            const { clients } = getState().client;
+            const index = findIndex(clients, { _id: client_id });
+
             if (index === -1) return dispatch(failure("User Not found"));
 
             const client = await makeRequestAsync(`/clients/${client_id}/client`, "PUT", clientUpdate);
@@ -164,9 +164,55 @@ const updateClient = (client_id, clientUpdate) => {
     };
 };
 
+
+const deleteClient = (client_id) => {
+    const request = () => ({
+        type: CLIENT_DELETE.REQUEST,
+        payload: {
+            isLoading: true,
+            error: '',
+        },
+    });
+
+    const success = index => ({
+        type: CLIENT_DELETE.SUCCESS,
+        payload: {
+            index,
+            isLoading: false,
+            error: '',
+        },
+    });
+
+    const failure = error => ({
+        type: CLIENT_DELETE.FAILURE,
+        payload: {
+            isLoading: false,
+            error,
+        },
+    });
+
+    return async (dispatch, getState) => {
+        dispatch(request());
+        try {
+            const { clients } = getState().client;
+            const index = findIndex(clients, { _id: client_id });
+
+            if (index === -1) return dispatch(failure("User Not found"));
+
+            const client = await makeRequestAsync(`/clients/${client_id}`, "DELETE");
+            console.log("########",client)
+            dispatch(success(index));
+        } catch (error) {
+            const message = error.message || error;
+            dispatch(failure(message));
+        }
+    };
+};
+
 export const clienActions = {
     getAllClient,
     getById,
     createClient,
     updateClient,
+    deleteClient
 }

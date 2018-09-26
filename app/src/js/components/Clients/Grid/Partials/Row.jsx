@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { clienActions } from "../../../../actions/client.actions";
+
 import ActionBarGrid from './ActionBarGrid';
-import Fields from '../../Form/Partials/Fields';
 
 class Row extends Component {
 	constructor(props) {
@@ -24,7 +25,7 @@ class Row extends Component {
 	}
 
 	onDelete = (id) => {
-		console.log("delete", id)
+		this.props.dispatch(clienActions.deleteClient(id));
 	}
 
 	onView = (id) => {
