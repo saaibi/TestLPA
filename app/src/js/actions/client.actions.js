@@ -1,5 +1,5 @@
 import { makeRequestAsync } from '../services'
-import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE } from '../constants/client.constans';
+import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE } from '../constants/client.constans';
 
 
 const getAllClient = () => {
@@ -118,8 +118,50 @@ const createClient = (clientCreate) => {
     };
 };
 
+const updateClient = (id, clientUpdate) => {
+    
+    const request = () => ({
+        type: CLIENT_UPDATE.REQUEST,
+        payload: {
+            isLoading: true,
+            error: '',
+        },
+    });
+
+    const success = client => ({
+        type: CLIENT_UPDATE.SUCCESS,
+        payload: {
+            client,
+            isLoading: false,
+            error: '',
+        },
+    });
+
+    const failure = error => ({
+        type: CLIENT_UPDATE.FAILURE,
+        payload: {
+            isLoading: true,
+            error,
+        },
+    });
+
+    return async (dispatch, getState) => {
+        dispatch(request());
+        try {
+            console.log(clientUpdate)
+            const client = await makeRequestAsync(`/clients/${id}/client`, "PUT", clientUpdate);
+            console.log(client)
+            // dispatch(success(client.data.client));
+        } catch (error) {
+            const message = error.message || error;
+            dispatch(failure({ error: message }));
+        }
+    };
+};
+
 export const clienActions = {
     getAllClient,
     getById,
-    createClient
+    createClient,
+    updateClient,
 }

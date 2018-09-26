@@ -6,7 +6,7 @@ import ActionBarEdit from './Partials/ActionBarEdit';
 const Edit = (props) => (
 	<div >
 		<Fields loadClient={props.loadClient} client={props.client} />
-		<ActionBarEdit  createClient={props.createClient}/>
+		<ActionBarEdit  updateClient={props.updateClient}/>
 	</div>
 );
 

@@ -10,7 +10,7 @@ const ActionBarEdit = (props) => (
 				texto="Update"
 				icon="save"
 				classNameIcon="right"
-				onClick={props.createClient}
+				onClick={props.updateClient}
 			/>
 		</div>
 	</div>

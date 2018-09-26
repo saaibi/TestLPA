@@ -23,6 +23,7 @@ class Client extends Component {
 		clientEdit: {
 			firstName: "",
 			lastName: "",
+			client_id: ""
 		},
 		headerModal: "",
 		contentModal: "",
@@ -42,6 +43,12 @@ class Client extends Component {
 	createClient = (e) => {
 		e.preventDefault();
 		this.props.dispatch(clienActions.createClient(this.state.client));
+	}
+
+	updateClient = (e) => {
+		e.preventDefault();
+		const { clientEdit } = this.state;
+		this.props.dispatch(clienActions.updateClient(clientEdit.client_id, clientEdit));
 	}
 
 	loadClient = (event) => {
@@ -67,14 +74,19 @@ class Client extends Component {
 	}
 
 	optionsClient = (e) => {
+		const { clientEdit } = this.state
 		const { headerModal, contentModal, id } = e;
+
+		clientEdit.client_id = id;
+
 		this.setState({
 			headerModal,
-			contentModal
-		})
+			contentModal,
+			clientEdit
+		});
 		this.props.dispatch(clienActions.getById(id));
 		$('#modalClient').modal('open')
-		
+
 	}
 
 	render() {
@@ -90,8 +102,10 @@ class Client extends Component {
 				)
 			}
 		}
-		
-		let content = contentModal == "edit" ? content = <Edit client={clientEdit} loadClient={this.loadClientEdit} /> : content = "Hello!!";
+
+		let content = contentModal == "edit" ? content =
+			<Edit client={clientEdit} updateClient={this.updateClient} loadClient={this.loadClientEdit} /> : content =
+			"Hello!!";
 
 		return (
 			<div className="row">
