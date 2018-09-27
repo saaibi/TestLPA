@@ -9,21 +9,21 @@ import View from '../../../Common/Button';
 const ActionBarGrid = ({ id, onEdit, onDelete, onView }) => (
 	<div>
 		<Edit
-			className="btn-floating green pulse"
+			className="btn-floating pink lighten-2 "
 			icon="edit"
 			classNameIcon="prefix"
 			onClick={(e) => onEdit(id)}
 		/>
 
 		<Delete
-			className="btn-floating red"
+			className="btn-floating blue lighten-1"
 			icon="delete_forever"
 			classNameIcon="prefix"
 			onClick={(e) => onDelete(id)}
 		/>
 		
 		<View
-			className="btn-floating cyan "
+			className="btn-floating pink pulse"
 			icon="visibility"
 			classNameIcon="prefix"
 			onClick={(e) => onView(id)}

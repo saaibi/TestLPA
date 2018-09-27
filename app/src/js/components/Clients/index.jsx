@@ -93,7 +93,7 @@ class Client extends Component {
 	}
 
 	render() {
-		const { clients } = this.props;
+		const { clients , client } = this.props;
 		const { headerModal, contentModal, clientEdit } = this.state;
 
 		if (clients.isLoading) {
@@ -106,7 +106,7 @@ class Client extends Component {
 
 		let content = contentModal == "edit" ? content =
 			<Edit client={clientEdit} updateClient={this.updateClient} loadClient={this.loadClientEdit} /> : content =
-			<View />;
+			<View client={client} />;
 
 		return (
 			<div className="row">
