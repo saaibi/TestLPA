@@ -16,8 +16,6 @@ export function client(state = initialState, action) {
     case CLIENT_GET.FAILURE:
     case CLIENT_GETBYID.SUCCESS:
     case CLIENT_GETBYID.FAILURE:
-    case CLIENT_GETBYID.SUCCESS:
-    case CLIENT_GETBYID.SUCCESS:
     case CLIENT_CREATE.REQUEST:
     case CLIENT_CREATE.FAILURE:
       return {
