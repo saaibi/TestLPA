@@ -19,7 +19,10 @@ const creditSchema = new Schema({
     interest: { type: Number, default: 0 }
 }, {
         versionKey: false,
-        timestamps:true
+        timestamps: {
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
+        }
     });
 
 creditSchema.pre('save', function (next) {

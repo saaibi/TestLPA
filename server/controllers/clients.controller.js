@@ -13,6 +13,11 @@ clientController.getByIdClient = async (req, res) => {
     res.json(client);
 };
 
+clientController.getByIdClientCredit = async (req, res) => {
+    const client = await Client.findById(req.params.id).populate('credit').exec();
+    res.json(client);
+};
+
 //  Credit.schema.pre
 clientController.createClient = async (req, res) => {
     const { firstName, lastName, client_id } = req.body;
@@ -32,10 +37,14 @@ clientController.createClient = async (req, res) => {
 };
 
 clientController.updateClient = async (req, res) => {
-    const { firstName, lastName, client_id } = req.body;
-    const clientUpdate = { firstName, lastName, client_id };
+    const { firstName, lastName } = req.body;
+    const clientUpdate = { firstName, lastName };
+    console.log(req.body)
+    console.log(req.params.id)
     await Client.findByIdAndUpdate(req.params.id, clientUpdate, { new: true }, (err, client) => {
         if (err) return res.json({ error: err });
+        console.log("################$", client)
+
         res.json({ status: "Client Updated", client });
     });
 
@@ -53,13 +62,21 @@ clientController.updateCredit = async (req, res) => {
 
 // Pending Review
 clientController.deleteClient = async (req, res) => {
-    await Client.findByIdAndRemove(req.params.id, async (err, client) => {
-        if (err) return res.json({ error: err });
-        await Credit.findByIdAndRemove(client.credit, (err,credit) => {
+    try {
+        let credit_id = ''
+        await Client.findByIdAndRemove(req.params.id, (err, client) => {
+            if (err) return res.json({ error: err });
+            credit_id = client.credit;
+        });
+        await Credit.findByIdAndRemove(credit_id, (err, credit) => {
             if (err) return res.json({ error: err });
             res.json({ status: "Client Removed" });
         })
-    });
+    } catch (error) {
+        const message = error.message || error;
+        res.json({ error: message });
+    }
+
 };
 
 module.exports = clientController;

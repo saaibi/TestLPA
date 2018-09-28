@@ -1,6 +1,6 @@
 import findIndex from 'lodash/findIndex'
 import { makeRequestAsync } from '../services'
-import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE } from '../constants/client.constans';
+import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE , CLIENT_CREDIT_GETBYID } from '../constants/client.constans';
 
 
 const getAllClient = () => {
@@ -80,6 +80,45 @@ const getById = (id) => {
     };
 };
 
+const getByIdCredit = (id) => {
+    const request = () => ({
+        type: CLIENT_CREDIT_GETBYID.REQUEST,
+        payload: {
+            isLoading: true,
+            error: '',
+        },
+    });
+
+    const success = clientCredit => ({
+        type: CLIENT_CREDIT_GETBYID.SUCCESS,
+        payload: {
+            clientCredit,
+            isLoading: false,
+            error: '',
+        },
+    });
+
+    const failure = error => ({
+        type: CLIENT_CREDIT_GETBYID.FAILURE,
+        payload: {
+            isLoading: false,
+            error,
+        },
+    });
+
+    return async (dispatch, getState) => {
+        dispatch(request());
+        try {
+            const clientCredit = await makeRequestAsync(`/clients/${id}/credit`, "GET");
+            dispatch(success(clientCredit.data));
+        } catch (error) {
+            const message = error.message || error;
+            dispatch(failure({ error: message }));
+        }
+    };
+};
+
+
 
 const createClient = (clientCreate) => {
     const request = () => ({
@@ -120,7 +159,7 @@ const createClient = (clientCreate) => {
     };
 };
 
-const updateClient = (client_id, clientUpdate) => {
+const updateClient = (client_id, clientEdit) => {
 
     const request = () => ({
         type: CLIENT_UPDATE.REQUEST,
@@ -156,7 +195,9 @@ const updateClient = (client_id, clientUpdate) => {
 
             if (index === -1) return dispatch(failure("User Not found"));
 
+            const clientUpdate = { firstName : clientEdit.firstName, lastName : clientEdit.lastName };
             const client = await makeRequestAsync(`/clients/${client_id}/client`, "PUT", clientUpdate);
+            console.log(client)
             dispatch(success(index, client.data.client));
             M.toast({html: `${client.data.status}`, classes: 'rounded'});
         } catch (error) {
@@ -214,6 +255,7 @@ const deleteClient = (client_id) => {
 export const clienActions = {
     getAllClient,
     getById,
+    getByIdCredit,
     createClient,
     updateClient,
     deleteClient

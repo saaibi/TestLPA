@@ -1,8 +1,9 @@
-import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE } from '../constants/client.constans';
+import { CLIENT_GET, CLIENT_GETBYID, CLIENT_CREATE, CLIENT_UPDATE, CLIENT_DELETE, CLIENT_CREDIT_GETBYID } from '../constants/client.constans';
 
 const initialState = {
   clients: [],
   client: '',
+  clientCredit: '',
   isLoading: false,
   error: '',
 };
@@ -14,10 +15,16 @@ export function client(state = initialState, action) {
     case CLIENT_GET.REQUEST:
     case CLIENT_GET.SUCCESS:
     case CLIENT_GET.FAILURE:
-    case CLIENT_GETBYID.SUCCESS:
+    case CLIENT_GETBYID.REQUEST:
     case CLIENT_GETBYID.FAILURE:
     case CLIENT_CREATE.REQUEST:
     case CLIENT_CREATE.FAILURE:
+    case CLIENT_UPDATE.REQUEST:
+    case CLIENT_UPDATE.FAILURE:
+    case CLIENT_DELETE.REQUEST:
+    case CLIENT_DELETE.FAILURE:
+    case CLIENT_CREDIT_GETBYID.REQUEST:
+    case CLIENT_CREDIT_GETBYID.FAILURE:
       return {
         ...state,
         ...payload,
@@ -27,6 +34,13 @@ export function client(state = initialState, action) {
       return {
         ...state,
         client,
+      };
+    }
+    case CLIENT_CREDIT_GETBYID.SUCCESS: {
+      const { clientCredit } = payload;
+      return {
+        ...state,
+        clientCredit,
       };
     }
     case CLIENT_CREATE.SUCCESS: {

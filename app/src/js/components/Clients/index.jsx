@@ -20,13 +20,12 @@ class Client extends Component {
 			firstName: "",
 			lastName: "",
 			client_id: "",
-			credit: {}
 		},
 		clientEdit: {
-			firstName: "",
-			lastName: "",
-			client_id: ""
+			firstName: '',
+			lastName: '',
 		},
+		client_id: "",
 		headerModal: "",
 		contentModal: "",
 	}
@@ -49,8 +48,8 @@ class Client extends Component {
 
 	updateClient = (e) => {
 		e.preventDefault();
-		const { clientEdit } = this.state;
-		this.props.dispatch(clienActions.updateClient(clientEdit.client_id, clientEdit));
+		const { clientEdit , client_id } = this.state;
+		this.props.dispatch(clienActions.updateClient(client_id, clientEdit));
 		$('#modalClient').modal('close')
 	}
 
@@ -80,33 +79,38 @@ class Client extends Component {
 		const { clientEdit } = this.state
 		const { headerModal, contentModal, id } = e;
 
-		clientEdit.client_id = id;
+		this.state.client_id = id;
 
 		this.setState({
 			headerModal,
 			contentModal,
 			clientEdit
 		});
-		this.props.dispatch(clienActions.getById(id));
+
+		if (contentModal === "edit")
+			this.props.dispatch(clienActions.getById(id));
+		else if (contentModal === "view")
+			this.props.dispatch(clienActions.getByIdCredit(id));
+
 		$('#modalClient').modal('open')
 
 	}
 
 	render() {
-		const { clients , client } = this.props;
+		const { clients, client, clientCredit } = this.props;
 		const { headerModal, contentModal, clientEdit } = this.state;
 
 		if (clients.isLoading) {
 			if (!clients.clients) {
 				return (
-					<Progress type="circle"/>
+					<Progress type="circle" />
 				)
 			}
 		}
 
 		let content = contentModal == "edit" ? content =
 			<Edit client={clientEdit} updateClient={this.updateClient} loadClient={this.loadClientEdit} /> : content =
-			<View client={client} />;
+			<View client={clientCredit} />;
 
 		return (
 			<div className="row">
@@ -129,6 +133,7 @@ class Client extends Component {
 const mapStateToProps = (state) => ({
 	clients: state.client,
 	client: state.client.client,
+	clientCredit: state.client.clientCredit,
 });
 
 export default connect(mapStateToProps)(Client);
