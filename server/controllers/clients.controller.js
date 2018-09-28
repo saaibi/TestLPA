@@ -39,26 +39,33 @@ clientController.createClient = async (req, res) => {
 clientController.updateClient = async (req, res) => {
     const { firstName, lastName } = req.body;
     const clientUpdate = { firstName, lastName };
-    console.log(req.body)
-    console.log(req.params.id)
+    
     await Client.findByIdAndUpdate(req.params.id, clientUpdate, { new: true }, (err, client) => {
         if (err) return res.json({ error: err });
-        console.log("################$", client)
-
         res.json({ status: "Client Updated", client });
     });
 
 };
 
+// query = { _id: req.params.id };
 clientController.updateCredit = async (req, res) => {
-    const { credit } = req.body;
+    const { addCredit, valueCredit, endDate, startDate } = req.body;
+    const creditUpdate = { addCredit: addCredit, valueCredit: valueCredit };
     const options = { new: true, runValidators: true };
+
+    await Credit.findByIdAndUpdate(req.params.id, creditUpdate, options, (err, credit) => {
+        if (err) return res.json({ error: err });
+        res.json({ status: "Credit Created", credit });
+    });
+};
+
+clientController.updateCreditBalance = async (req, res) => {
     await Client.findByIdAndUpdate(req.params.id, { $set: { credit: credit } }, options, (err, client) => {
         if (err) return res.json({ error: err });
-        res.json({ status: "Credit Created", client });
-    });
 
+    });
 };
+
 
 // Pending Review
 clientController.deleteClient = async (req, res) => {

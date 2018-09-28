@@ -12,11 +12,12 @@ const creditSchema = new Schema({
     endDate: { type: Date, default: moment('05/15/2020 12:00', 'MM/DD/YYYY HH:mm') },
     valueCredit: {
         type: Number,
+        default: 0,
         max: 1000000,
         min: 0,
     },
     percentagePaid: { type: Number, default: 0 },
-    interest: { type: Number, default: 0 }
+    interest: { type: Number, default: 20 }
 }, {
         versionKey: false,
         timestamps: {
@@ -26,9 +27,17 @@ const creditSchema = new Schema({
     });
 
 creditSchema.pre('save', function (next) {
-    let { addCredit, valueCredit, valuePaid } = this;
+    let { valueCredit, valuePaid } = this;
     this.percentagePaid = (valuePaid / valueCredit) * 100;
-    this.interest = addCredit ? 20 : 0;
+    next();
+});
+
+// this._update.$set.valueCredit
+// this._update
+creditSchema.pre('findOneAndUpdate', function (next) {
+    let { valueCredit, valuePaid } = this._update;
+    let valueP = valuePaid ? valuePaid : 0;
+    this._update.percentagePaid = ( valueP / valueCredit) * 100;
     next();
 });
 
