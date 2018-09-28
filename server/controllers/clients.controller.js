@@ -39,7 +39,7 @@ clientController.createClient = async (req, res) => {
 clientController.updateClient = async (req, res) => {
     const { firstName, lastName } = req.body;
     const clientUpdate = { firstName, lastName };
-    
+
     await Client.findByIdAndUpdate(req.params.id, clientUpdate, { new: true }, (err, client) => {
         if (err) return res.json({ error: err });
         res.json({ status: "Client Updated", client });
@@ -50,11 +50,17 @@ clientController.updateClient = async (req, res) => {
 // query = { _id: req.params.id };
 clientController.updateCredit = async (req, res) => {
     const { addCredit, valueCredit, endDate, startDate } = req.body;
-    const creditUpdate = { addCredit: addCredit, valueCredit: valueCredit };
+    const creditUpdate = {
+        addCredit: addCredit,
+        valueCredit: valueCredit,
+        startDate: Date(startDate),
+        endDate: Date(endDate)
+    };
     const options = { new: true, runValidators: true };
 
     await Credit.findByIdAndUpdate(req.params.id, creditUpdate, options, (err, credit) => {
         if (err) return res.json({ error: err });
+        // console.log(moment(credit.startDate).format("DD/MM/YYYY HH:mm"))
         res.json({ status: "Credit Created", credit });
     });
 };
