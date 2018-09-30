@@ -3,7 +3,8 @@ import { Collapsible } from 'react-materialize';
 
 import Progress from '../../../Common/Utils/Progress';
 import Form from './Form';
-import List from './List';
+import ListClient from './List/ListClient';
+import ListCredit from './List/ListCredit';
 import CollapsibleItem from '../../../Common/Collapsible/CollapsibleItems';
 
 const Collapsibles = (props) => {
@@ -15,11 +16,11 @@ const Collapsibles = (props) => {
     }
     console.log(client.credit)
 
-    let contentCollap = client.credit.addCredit  ? "The Client Has Credit" :  <Form />;
+    let contentCollap = client.credit.addCredit  ? <ListCredit credit={client.credit} /> :  <Form />;
    
     return (
         <Collapsible popout>
-            <CollapsibleItem header='Detail Client' icon='assignment'  content={<List client={client} />} />
+            <CollapsibleItem header='Detail Client' icon='assignment'  content={<ListClient client={client} />} />
             <CollapsibleItem header='Credit' icon='credit_card' expanded content={contentCollap} />
             {/* <CollapsibleItem header='Detail Client' icon='assignment'>
                
