@@ -13,12 +13,14 @@ const Collapsibles = (props) => {
             <Progress type="circle" />
         )
     }
-    let contentCollap =client.credit.addCredit  ? "hoa!!" :  "eyyy!!";
     console.log(client.credit)
+
+    let contentCollap = client.credit.addCredit  ? "The Client Has Credit" :  <Form />;
+   
     return (
         <Collapsible popout>
-            <CollapsibleItem header='Detail Client' icon='assignment' content={<List client={client} />} />
-            <CollapsibleItem header='Credit' icon='credit_card' expanded content={<Form />} />
+            <CollapsibleItem header='Detail Client' icon='assignment'  content={<List client={client} />} />
+            <CollapsibleItem header='Credit' icon='credit_card' expanded content={contentCollap} />
             {/* <CollapsibleItem header='Detail Client' icon='assignment'>
                
             </CollapsibleItem>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddCredit from '../../../Common/Button';
+import AddCredit from '../../../../../Common/Button';
 
 const ActionBarView = (props) => (
 	<div>
@@ -10,7 +10,7 @@ const ActionBarView = (props) => (
 				texto="Pay"
 				icon="local_atm"
 				classNameIcon="right"
-				onClick={(e) => props.updateClient}
+				onClick={(e) => props.updateCredit}
 			/>
 		</div>
 	</div>
