@@ -37,7 +37,7 @@ creditSchema.pre('save', function (next) {
 creditSchema.pre('findOneAndUpdate', function (next) {
     let { valueCredit, valuePaid } = this._update;
     let valueP = valuePaid ? valuePaid : 0;
-    this._update.percentagePaid = ( valueP / valueCredit) * 100;
+    this._update.percentagePaid = (valueP / valueCredit) * 100;
     next();
 });
 
