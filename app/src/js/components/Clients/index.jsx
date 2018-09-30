@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { clienActions } from "../../actions/client.actions";
+import { clientActions } from "../../actions/client.actions";
 
 import Form from './Form';
 import Grid from './Grid';
@@ -31,7 +31,7 @@ class Client extends Component {
 	}
 
 	componentWillMount() {
-		this.props.dispatch(clienActions.getAllClient());
+		this.props.dispatch(clientActions.getAllClient());
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -43,13 +43,13 @@ class Client extends Component {
 
 	createClient = (e) => {
 		e.preventDefault();
-		this.props.dispatch(clienActions.createClient(this.state.client));
+		this.props.dispatch(clientActions.createClient(this.state.client));
 	}
 
 	updateClient = (e) => {
 		e.preventDefault();
 		const { clientEdit , client_id } = this.state;
-		this.props.dispatch(clienActions.updateClient(client_id, clientEdit));
+		this.props.dispatch(clientActions.updateClient(client_id, clientEdit));
 		$('#modalClient').modal('close')
 	}
 
@@ -88,9 +88,9 @@ class Client extends Component {
 		});
 
 		if (contentModal === "edit")
-			this.props.dispatch(clienActions.getById(id));
+			this.props.dispatch(clientActions.getById(id));
 		else if (contentModal === "view")
-			this.props.dispatch(clienActions.getByIdCredit(id));
+			this.props.dispatch(clientActions.getByIdCredit(id));
 
 		$('#modalClient').modal('open')
 

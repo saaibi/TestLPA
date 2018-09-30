@@ -193,7 +193,7 @@ const updateClient = (client_id, clientEdit) => {
             const { clients } = getState().client;
             const index = findIndex(clients, { _id: client_id });
 
-            if (index === -1) return dispatch(failure("User Not found"));
+            if (index === -1) return dispatch(failure("Client Not found"));
 
             const clientUpdate = { firstName : clientEdit.firstName, lastName : clientEdit.lastName };
             const client = await makeRequestAsync(`/clients/${client_id}/client`, "PUT", clientUpdate);
@@ -240,7 +240,7 @@ const deleteClient = (client_id) => {
             const { clients } = getState().client;
             const index = findIndex(clients, { _id: client_id });
 
-            if (index === -1) return dispatch(failure("User Not found"));
+            if (index === -1) return dispatch(failure("Client Not found"));
 
             const client = await makeRequestAsync(`/clients/${client_id}`, "DELETE");
             dispatch(success(index));
@@ -252,7 +252,7 @@ const deleteClient = (client_id) => {
     };
 };
 
-export const clienActions = {
+export const clientActions = {
     getAllClient,
     getById,
     getByIdCredit,

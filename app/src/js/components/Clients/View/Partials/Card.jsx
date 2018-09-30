@@ -12,11 +12,11 @@ const Card = (props) => (
             <span className="card-title">{props.client.firstName} {props.client.lastName}</span>
         </div>
         <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">Details Cleint<Icon icon="more_vert" className="right" /></span>
+            <span className="card-title activator grey-text text-darken-4">Details Client<Icon icon="more_vert" className="right" /></span>
             <Collapsibles {...props} />
         </div>
         <div className="card-action center-align">
-            <ActionBarView />
+            
         </div>
         <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">{props.client.firstName}<Icon icon="close" className="right" /></span>
@@ -30,6 +30,7 @@ const Card = (props) => (
                 classNameIcon="prefix"
                 onChange={(e) => props.loadClient(e)}
             />
+            <ActionBarView />
         </div>
     </div>
 );

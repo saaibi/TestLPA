@@ -1,32 +1,38 @@
 import React from 'react';
-import { Collapsible, CollapsibleItem } from 'react-materialize';
+import { Collapsible } from 'react-materialize';
 
-import Icon from '../../../Common/Icons';
 import Progress from '../../../Common/Utils/Progress';
+import Form from './Form';
+import List from './List';
+import CollapsibleItem from '../../../Common/Collapsible/CollapsibleItems';
 
 const Collapsibles = (props) => {
-
-    if (!props.client.credit) {
+    const { client } = props;
+    if (!client.credit) {
         return (
             <Progress type="circle" />
         )
     }
-    console.log(props.client.credit)
+    let contentCollap =client.credit.addCredit  ? "hoa!!" :  "eyyy!!";
+    console.log(client.credit)
     return (
-        <Collapsible popout defaultActiveKey={0}>
-            <CollapsibleItem header='Detail Client' icon='assignment'>
-                <ul>
-                    <li> - First Name: {props.client.firstName} </li>
-                    <li> - Last Name: {props.client.lastName}</li>
-                    <li> - Id: {props.client.client_id}</li>
-                </ul>
+        <Collapsible popout>
+            <CollapsibleItem header='Detail Client' icon='assignment' content={<List client={client} />} />
+            <CollapsibleItem header='Credit' icon='credit_card' expanded content={<Form />} />
+            {/* <CollapsibleItem header='Detail Client' icon='assignment'>
+               
             </CollapsibleItem>
             <CollapsibleItem header='Credit' icon='credit_card'>
-                The Client has no  credit
-                <ul>
-                    <li> - Daily Payment: {props.client.credit.payDaily}</li>
-                </ul>
-            </CollapsibleItem>
+                {
+                    client.credit.addCredit ?
+                        <ul>
+                            <li> - Daily Payment: {props.client.credit.valueCredit}</li>
+                        </ul>
+                        : 
+                        "The Client has no  credit"
+                }
+            </CollapsibleItem> */}
+
         </Collapsible>
     );
 };
