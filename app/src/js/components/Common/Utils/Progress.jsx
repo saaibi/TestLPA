@@ -8,7 +8,7 @@ const Progress = ({ type }) => type === "linear" ? (
 ) : (
         <div className="center-align">
             <div className="preloader-wrapper active">
-                <div className="spinner-layer spinner-teal-only">
+                <div className="spinner-layer spinner-blue-only">
                     <div className="circle-clipper left">
                         <div className="circle"></div>
                     </div><div className="gap-patch">

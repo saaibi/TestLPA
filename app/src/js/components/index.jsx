@@ -5,10 +5,6 @@ import AppHeader from './AppHeader';
 import Client from './Clients';
 
 class AppClient extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div className="container">
@@ -19,10 +15,5 @@ class AppClient extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		state
-	};
-}
-const connectedLoginPage = connect(mapStateToProps)(AppClient);
+const connectedLoginPage = connect()(AppClient);
 export { connectedLoginPage as AppClient };

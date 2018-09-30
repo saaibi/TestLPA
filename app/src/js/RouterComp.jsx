@@ -25,7 +25,7 @@ class RouterComp extends Component {
             <dir></dir>
             <Router history={history}>
               <div>
-                <Route path="/" component={AppClient} />
+                <Route path="/clients" component={AppClient} />
               </div>
             </Router>
       </div>
