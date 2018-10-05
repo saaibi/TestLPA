@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { history } from "../utils/history";
+ import { history } from "../store";
 import { alertActions } from "../actions/alert.actions";
 import { AppClient } from "../components";
 
