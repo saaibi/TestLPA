@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 // import '../style/index.scss';
 
 import { store } from './store/store';
-import { RouterComp } from './RouterComp';
+import { Routes } from './routes';
 
 const AppLPA = () => (
 	<Provider store={ store }>
-		<RouterComp />
+		<Routes />
 	</Provider>
 );
 
