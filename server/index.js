@@ -18,6 +18,7 @@ app.use(morgan('dev'))
 // Routes
 app.use('/api/clients', require('./routes/clients.routes'));
 app.use('/api/credits', require('./routes/credit.routes'));
+app.use('/api/samples', require('./routes/samples.routes'));
 
 //Static 
 // app.use(express.static(path.join(__dirname, 'public')));
