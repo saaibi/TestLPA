@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Marca = () => (
-	<span className="brand-logo">CLIENTS</span>
+const Marca = (props) => (
+	<span className="brand-logo">{props.name}</span>
 );
 
 export default Marca;
