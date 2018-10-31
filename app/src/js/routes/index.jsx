@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 
 import { history } from "../store";
 import { AppClient } from "../components/Clients/RoutComp";
-import { AppSample } from "../components/Samples/RoutComp";
-import { AppResult } from "../components/Results/RoutComp";
+import { AppCredit } from "../components/Results/RoutComp";
 
 const Routes = () => {
   return (
@@ -13,8 +12,7 @@ const Routes = () => {
       <Router history={history}>
         <div>
           <Route path="/clients" component={AppClient} />
-          <Route path="/results" component={AppResult} />
-          <Route path="/samples" component={AppSample} />
+          <Route path="/credits" component={AppCredit} />
         </div>
       </Router>
     </div>
